@@ -1,0 +1,7 @@
+﻿  glad.c
+  ImageImpementation.cpp
+  Main.cpp
+C:\Users\User\source\repos\OpenGL3\OpenGL3\Main.cpp(141,40): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  OpenGL3.vcxproj -> C:\Users\User\source\repos\OpenGL3\x64\Debug\OpenGL3.exe

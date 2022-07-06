@@ -1,10 +1,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "stb_image.h"
-
 #include "Shader.h"
-
 #include <iostream>
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -135,8 +135,11 @@ int main()
     }
     stbi_image_free(data);
 
+    glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
     ourShader.use();
     glUniform1i(glGetUniformLocation(ourShader.ID, "texture"), 0);
+    glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "u_MVP"), 1, GL_FALSE, &proj[0][0]);
     ourShader.setInt("texture2", 1);
     ourShader.setFloat("mixAmount", 0.9);
 

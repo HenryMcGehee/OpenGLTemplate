@@ -147,10 +147,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Documents\GLAD\src\glad.c" />
+    <ClCompile Include="ErrorCheck.cpp" />
     <ClCompile Include="ImageImpementation.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ErrorCheck.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>

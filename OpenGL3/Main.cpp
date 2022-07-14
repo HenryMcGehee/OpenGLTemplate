@@ -5,13 +5,14 @@
 #include <iostream>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "ErrorCheck.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 960;
+const unsigned int SCR_HEIGHT = 540;
 
 int main()
 {
@@ -54,10 +55,10 @@ int main()
     // ------------------------------------------------------------------
     float vertices[] = {
         // positions          // colors           // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
+         100.0f,  100.0f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+         200.0f,  100.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+         200.0f,  200.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+         100.0f,  200.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
     };
     unsigned int indices[] = {
         0, 1, 3, // first triangle
@@ -135,11 +136,14 @@ int main()
     }
     stbi_image_free(data);
 
-    glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+    glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(-100, 0, 0));
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200, 200, 0));
+    glm::mat4 mvp = proj * view * model;
 
     ourShader.use();
     glUniform1i(glGetUniformLocation(ourShader.ID, "texture"), 0);
-    glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "u_MVP"), 1, GL_FALSE, &proj[0][0]);
+    GLCall(glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "u_MVP"), 1, GL_FALSE, &mvp[0][0]));
     ourShader.setInt("texture2", 1);
     ourShader.setFloat("mixAmount", 0.9);
 

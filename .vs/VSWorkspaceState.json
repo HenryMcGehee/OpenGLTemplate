@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\includes",
+    "\\libs",
+    "\\OpenGL3",
+    "\\x64"
   ],
-  "SelectedNode": "\\OpenGL3.sln",
+  "SelectedNode": "\\OpenGL3",
   "PreviewInSolutionExplorer": false
 }

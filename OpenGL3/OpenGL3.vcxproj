@@ -160,9 +160,8 @@
     <None Include="shader.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\woodencontainer.jpg" />
     <Image Include="awesomeface.png" />
-    <Image Include="wall.jpg" />
+    <Image Include="Images\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="stb_image.h" />

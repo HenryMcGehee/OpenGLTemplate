@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Documents\GLAD\src\glad.c" />
     <ClCompile Include="ErrorCheck.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="vendor\ImageImpementation.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -440,8 +441,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />
-    <None Include="shader.frag" />
-    <None Include="shader.vert" />
     <None Include="vendor\glm\detail\func_common.inl" />
     <None Include="vendor\glm\detail\func_common_simd.inl" />
     <None Include="vendor\glm\detail\func_exponential.inl" />

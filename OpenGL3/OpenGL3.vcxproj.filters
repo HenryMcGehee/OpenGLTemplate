@@ -27,11 +27,11 @@
     <ClCompile Include="ErrorCheck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ErrorCheck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -884,14 +884,11 @@
     <ClInclude Include="vendor\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="shader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="vendor\glm\detail\func_common.inl">
       <Filter>Header Files</Filter>
     </None>

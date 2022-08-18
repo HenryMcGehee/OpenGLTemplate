@@ -3,9 +3,9 @@
 #include "stb_image.h"
 #include "Shader.h"
 #include <iostream>
+#include "ErrorCheck.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
-#include "ErrorCheck.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -13,6 +13,85 @@ void processInput(GLFWwindow* window);
 // settings
 const unsigned int SCR_WIDTH = 960;
 const unsigned int SCR_HEIGHT = 540;
+
+struct ShaderProgramSource
+{
+    std::string VertexSource;
+    std::string FragmentSource;
+};
+
+static ShaderProgramSource ParseShader(const std::string& filepath)
+{
+    std::ifstream stream(filepath);
+
+    enum class ShaderType
+    {
+        NONE = -1, VERTEX = 0, FRAGMENT = 1
+    };
+
+    std::string line;
+    std::stringstream ss[2];
+    ShaderType type = ShaderType::NONE;
+    while (getline(stream, line))
+    {
+        if (line.find("#shader") != std::string::npos)
+        {
+            if (line.find("vertex") != std::string::npos)
+            {
+                type = ShaderType::VERTEX;
+            }
+            else if (line.find("fragment") != std::string::npos)
+            {
+                type = ShaderType::FRAGMENT;
+            }
+        }
+        else
+        {
+            ss[(int)type] << line << '\n';
+        }
+    }
+    return { ss[0].str(), ss[1].str() };
+}
+
+static unsigned int CompileShader(unsigned int type, const std::string& source)
+{
+    unsigned int id = glCreateShader(type);
+    const char* src = source.c_str();
+    glShaderSource(id, 1, &src, nullptr);
+    glCompileShader(id);
+
+    int result;
+    glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+    if (result == GL_FALSE)
+    {
+        int length;
+        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+        char* message = (char*)alloca(length * sizeof(char));
+        glGetShaderInfoLog(id, length, &length, message);
+        std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
+        std::cout << message << std::endl;
+        glDeleteShader(id);
+        return 0;
+    }
+    return id;
+}
+
+static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
+{
+    unsigned int program = glCreateProgram();
+    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
+    glLinkProgram(program);
+    glValidateProgram(program);
+
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+
+    return program;
+}
 
 int main()
 {
@@ -49,7 +128,11 @@ int main()
 
     // build and compile our shader program
     // ------------------------------------
-    Shader ourShader("shader.vert", "shader.frag"); // you can name your shader files however you like
+    //Shader ourShader("shader.vert", "shader.frag"); // you can name your shader files however you like
+
+    ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
+    unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
+    glUseProgram(shader);
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -87,7 +170,6 @@ int main()
     //// texture coord attribute
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-
     
     unsigned int texture;
     glGenTextures(1, &texture);
@@ -102,7 +184,7 @@ int main()
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true);
     // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    unsigned char* data = stbi_load("Images/wall.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("res/images/wall.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -119,8 +201,8 @@ int main()
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200, 200, 0));
     glm::mat4 mvp = proj * view * model;*/
 
-    ourShader.use();
-    glUniform1i(glGetUniformLocation(ourShader.ID, "texture"), 0);
+    //ourShader.use();
+    glUniform1i(glGetUniformLocation(shader, "texture"), 0);
     /*GLCall(glUniformMatrix4fv(glGetUniformLocation(ourShader.ID, "u_MVP"), 1, GL_FALSE, &mvp[0][0]));
     ourShader.setInt("texture2", 1);
     ourShader.setFloat("mixAmount", 0.9);*/
@@ -142,7 +224,7 @@ int main()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
 
-        ourShader.use();
+        //ourShader.use();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 

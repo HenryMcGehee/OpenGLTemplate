@@ -1,3 +1,5 @@
-﻿  Main.cpp
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  Test.cpp
+  TestClearColor.cpp
+  Main.cpp
+  Generating Code...
   OpenGL3.vcxproj -> C:\Users\User\Documents\OpenGL\OpenGLTemplate\x64\Debug\OpenGL3.exe

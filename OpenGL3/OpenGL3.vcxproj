@@ -151,6 +151,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="tests\Test.cpp" />
     <ClCompile Include="tests\TestClearColor.cpp" />
+    <ClCompile Include="tests\TestTexture.cpp" />
     <ClCompile Include="tests\TestTriangle.cpp" />
     <ClCompile Include="vendor\ImageImpementation.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="tests\Test.h" />
     <ClInclude Include="tests\TestClearColor.h" />
+    <ClInclude Include="tests\TestTexture.h" />
     <ClInclude Include="tests\TestTriangle.h" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_common.hpp" />
@@ -458,6 +460,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\UnlitColor.shader" />
+    <None Include="res\shaders\UnlitTexture.shader" />
     <None Include="vendor\glm\detail\func_common.inl" />
     <None Include="vendor\glm\detail\func_common_simd.inl" />
     <None Include="vendor\glm\detail\func_exponential.inl" />

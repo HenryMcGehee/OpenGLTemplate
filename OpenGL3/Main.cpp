@@ -6,6 +6,7 @@
 #include "imgui/imgui_impl_glfw_gl3.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTriangle.h"
+#include "tests/TestTexture.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -127,6 +128,7 @@ int main()
 
     menu->RegisterTest<test::TestClearColor>("Clear Color");
     menu->RegisterTest<test::TestTriangle>("Display Triangle");
+    menu->RegisterTest<test::TestTexture>("Textured Square");
 
     // render loop
     // -----------

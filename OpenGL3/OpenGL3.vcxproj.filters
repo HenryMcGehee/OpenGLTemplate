@@ -48,6 +48,9 @@
     <ClCompile Include="tests\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\TestTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h">
@@ -932,6 +935,9 @@
     <ClInclude Include="tests\TestClearColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tests\TestTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\detail\func_common.inl">
@@ -1342,7 +1348,7 @@
     <None Include="vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="res\shaders\Basic.shader" />
+    <None Include="res\shaders\UnlitColor.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\wall.jpg">

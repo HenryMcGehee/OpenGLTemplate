@@ -1,18 +1,11 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "stb_image.h"
 #include "ErrorCheck.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "Shader.h"
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw_gl3.h"
 #include "tests/TestClearColor.h"
-
+#include "tests/TestTriangle.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -59,8 +52,8 @@ int main()
     // ------------------------------------
     //Shader ourShader("shader.vert", "shader.frag"); // you can name your shader files however you like
 
-    Shader shader("res/shaders/Basic.shader");
-    shader.Bind();
+    /*Shader shader("res/shaders/Basic.shader");
+    shader.Bind();*/
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -128,14 +121,12 @@ int main()
     ImGui_ImplGlfwGL3_Init(window, true);
     ImGui::StyleColorsDark();
 
-    /*bool show_demo_window = true;
-    bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);*/
     test::Test* currentTest = nullptr;
     test::TestMenu* menu = new test::TestMenu(currentTest);
     currentTest = menu;
 
     menu->RegisterTest<test::TestClearColor>("Clear Color");
+    menu->RegisterTest<test::TestTriangle>("Display Triangle");
 
     // render loop
     // -----------
@@ -149,37 +140,14 @@ int main()
         // ------
         //glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
-        GLCall(glClearColor(0.2f, 0.4f, 0.7f, 1.0f));
-        //shader.Bind();
-        ////ourShader.use();
-        //glBindVertexArray(VAO);
-        //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
-        //{
-        //    static float f = 0.0f;
-        //    static int counter = 0;
-        //    ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
-        //    ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f    
-        //    ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-        //    ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our windows open/close state
-        //    ImGui::Checkbox("Another Window", &show_another_window);
-
-        //    if (ImGui::Button("Button"))                            // Buttons return true when clicked (NB: most widgets return true when edited/activated)
-        //        counter++;
-        //    ImGui::SameLine();
-        //    ImGui::Text("counter = %d", counter);
-
-        //    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-        //}
-        
+        GLCall(glClearColor(0.2f, 0.4f, 0.7f, 1.0f));        
 
         ImGui_ImplGlfwGL3_NewFrame();
         if (currentTest)
         {
             currentTest->OnUpdate(0.0f);
             currentTest->OnRender();
-            ImGui::Begin("Test");
+            ImGui::Begin("Samples");
             if (currentTest != menu && ImGui::Button("<-"))
             {
                 delete currentTest;
@@ -196,13 +164,6 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
-    /*glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);*/
-
 
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();

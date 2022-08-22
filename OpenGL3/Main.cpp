@@ -8,6 +8,7 @@
 #include "tests/TestTriangle.h"
 #include "tests/TestTexture.h"
 #include "tests/TestTransformations.h"
+#include "tests/TestMVP.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -62,6 +63,7 @@ int main()
     menu->RegisterTest<test::TestTriangle>("Display Triangle");
     menu->RegisterTest<test::TestTexture>("Textured Square");
     menu->RegisterTest<test::TestTransformations>("Transformations");
+    menu->RegisterTest<test::TestMVP>("Model View Projection Matrix");
 
     while (!glfwWindowShouldClose(window))
     {

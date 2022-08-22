@@ -151,6 +151,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="tests\Test.cpp" />
     <ClCompile Include="tests\TestClearColor.cpp" />
+    <ClCompile Include="tests\TestMVP.cpp" />
     <ClCompile Include="tests\TestTexture.cpp" />
     <ClCompile Include="tests\TestTransformations.cpp" />
     <ClCompile Include="tests\TestTriangle.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="tests\Test.h" />
     <ClInclude Include="tests\TestClearColor.h" />
+    <ClInclude Include="tests\TestMVP.h" />
     <ClInclude Include="tests\TestTexture.h" />
     <ClInclude Include="tests\TestTransformations.h" />
     <ClInclude Include="tests\TestTriangle.h" />
@@ -461,6 +463,7 @@
     <ClInclude Include="vendor\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\ModelViewMatrix.shader" />
     <None Include="res\shaders\Translation.shader" />
     <None Include="res\shaders\UnlitColor.shader" />
     <None Include="res\shaders\UnlitTexture.shader" />

@@ -7,6 +7,7 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestTriangle.h"
 #include "tests/TestTexture.h"
+#include "tests/TestTransformations.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -49,75 +50,6 @@ int main()
         return -1;
     }
 
-    // build and compile our shader program
-    // ------------------------------------
-    //Shader ourShader("shader.vert", "shader.frag"); // you can name your shader files however you like
-
-    /*Shader shader("res/shaders/Basic.shader");
-    shader.Bind();*/
-
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
-    //float vertices[] = {
-    //    // positions       
-    //     0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-    //     0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-    //    -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-    //    -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-    //};
-    //unsigned int indices[] = {
-    //    0, 1, 3, // first triangle
-    //    1, 2, 3  // second triangle
-    //};
-
-    //unsigned int VBO, VAO, EBO;
-    //glGenVertexArrays(1, &VAO);
-    //glGenBuffers(1, &VBO);
-    //glGenBuffers(1, &EBO);
-
-    //glBindVertexArray(VAO);
-
-    //glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    //// position attribute
-    //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    //glEnableVertexAttribArray(0);
-    ////// color attribute
-    ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    ////glEnableVertexAttribArray(1);
-    ////// texture coord attribute
-    //glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    //glEnableVertexAttribArray(1);
-    //
-    //unsigned int texture;
-    //glGenTextures(1, &texture);
-    //glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
-    //// set the texture wrapping parameters
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);	// set texture wrapping to GL_REPEAT (default wrapping method)
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    //// set texture filtering parameters
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    //// load image, create texture and generate mipmaps
-    //int width, height, nrChannels;
-    //stbi_set_flip_vertically_on_load(true);
-    //// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    //unsigned char* data = stbi_load("res/images/wall.jpg", &width, &height, &nrChannels, 0);
-    //if (data)
-    //{
-    //    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    //    glGenerateMipmap(GL_TEXTURE_2D);
-    //}
-    //else
-    //{
-    //    std::cout << "Failed to load texture" << std::endl;
-    //}
-    //stbi_image_free(data);
-
     ImGui::CreateContext();
     ImGui_ImplGlfwGL3_Init(window, true);
     ImGui::StyleColorsDark();
@@ -129,18 +61,12 @@ int main()
     menu->RegisterTest<test::TestClearColor>("Clear Color");
     menu->RegisterTest<test::TestTriangle>("Display Triangle");
     menu->RegisterTest<test::TestTexture>("Textured Square");
+    menu->RegisterTest<test::TestTransformations>("Transformations");
 
-    // render loop
-    // -----------
     while (!glfwWindowShouldClose(window))
     {
-        // input
-        // -----
         processInput(window);
 
-        // render
-        // ------
-        //glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         GLCall(glClearColor(0.2f, 0.4f, 0.7f, 1.0f));        
 

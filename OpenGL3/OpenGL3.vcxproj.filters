@@ -54,6 +54,9 @@
     <ClCompile Include="tests\TestTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\TestTransformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h">
@@ -944,6 +947,9 @@
     <ClInclude Include="tests\TestTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tests\TestTransformations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\detail\func_common.inl">
@@ -1356,6 +1362,7 @@
     </None>
     <None Include="res\shaders\UnlitColor.shader" />
     <None Include="res\shaders\UnlitTexture.shader" />
+    <None Include="res\shaders\Translation.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\wall.jpg">

@@ -21,7 +21,9 @@ namespace test {
 		float xPosition, yPosition, zPosition;
 		float xRotation, yRotation, zRotation;
 		float scale = 1;
-		glm::mat4 trans;
+		glm::mat4 model;
+		glm::mat4 view;
+		glm::mat4 projection;
 		std::unique_ptr<Shader> shader;
 	};
 }

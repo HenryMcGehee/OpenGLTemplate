@@ -8,32 +8,60 @@ namespace test {
 	TestMVP::TestMVP()
 	{
 		float vertices[] = {
-			// positions       
-			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-		};
-		unsigned int indices[] = {
-			0, 1, 3, // first triangle
-			1, 2, 3  // second triangle
+			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 		};
 
-		shader = std::make_unique<Shader>("res/shaders/Translation.shader");
+		shader = std::make_unique<Shader>("res/shaders/ModelViewMatrix.shader");
 		shader->Bind();
 
-		// Handle Rectangle
+		// Handle Cube
 		{
 			GLCall(glGenVertexArrays(1, &VAO));
 			GLCall(glGenBuffers(1, &VBO));
-			GLCall(glGenBuffers(1, &EBO));
 
 			GLCall(glBindVertexArray(VAO));
 			GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
 			GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
-
-			GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
-			GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
 
 			GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0));
 			GLCall(glEnableVertexAttribArray(0));
@@ -69,7 +97,7 @@ namespace test {
 			stbi_image_free(data);
 		}
 
-
+		glEnable(GL_DEPTH_TEST);
 	}
 	TestMVP::~TestMVP()
 	{
@@ -82,40 +110,36 @@ namespace test {
 	void TestMVP::OnRender()
 	{
 		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		shader->Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+		//GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+		
+		GLCall(glDrawArrays(GL_TRIANGLES, 0, 36));
 		GLCall(glBindVertexArray(VAO));
 
-		trans = glm::mat4(1.0f);
+		
 
-		// Position
-		trans = glm::translate(trans, glm::vec3(xPosition, yPosition, zPosition));
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
-		// Rotation
-		trans = glm::rotate(trans, (float)glfwGetTime() * xRotation, glm::vec3(1.0, 0.0, 0.0));
-		trans = glm::rotate(trans, (float)glfwGetTime() * yRotation, glm::vec3(0.0, 1.0, 0.0));
-		trans = glm::rotate(trans, (float)glfwGetTime() * zRotation, glm::vec3(0.0, 0.0, 1.0));
+		view = glm::mat4(1.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
-		// Scale
-		trans = glm::scale(trans, glm::vec3(scale, scale, scale));
+		projection = glm::perspective(glm::radians(45.0f), 960.0f / 540.0f, 0.1f, 100.0f);
 
-		unsigned int transformLoc = shader->GetUniformLocation("transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+		unsigned int modelLoc = shader->GetUniformLocation("model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		unsigned int viewlLoc = shader->GetUniformLocation("view");
+		glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
+
+		unsigned int projectionLoc = shader->GetUniformLocation("projection");
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
 	}
 	void TestMVP::OnImGuiRender()
 	{
-		ImGui::SliderFloat("X Position", &xPosition, -1.0f, 1.0f);
-		ImGui::SliderFloat("Y Position", &yPosition, -1.0f, 1.0f);
-		// ImGui::SliderFloat("Z Position", &zPosition, -1.0f, 1.0f);
-
-		ImGui::SliderFloat("X Rotation", &xRotation, -5.0f, 5.0f);
-		ImGui::SliderFloat("Y Rotation", &yRotation, -5.0f, 5.0f);
-		ImGui::SliderFloat("Z Rotation", &zRotation, -5.0f, 5.0f);
-
-		ImGui::SliderFloat("Scale", &scale, 0.1f, 5.0f);
-		//ImGui::SliderFloat("Y Scale", &yScale, 0.1f, 5.0f);
-		// ImGui::SliderFloat("Z Scale", &zScale, 0.1f, 5.0f);
+		
 	}
 }

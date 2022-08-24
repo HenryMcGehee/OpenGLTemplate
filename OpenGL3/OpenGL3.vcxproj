@@ -153,6 +153,7 @@
     <ClCompile Include="ErrorCheck.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="tests\Test.cpp" />
+    <ClCompile Include="tests\TestCamera.cpp" />
     <ClCompile Include="tests\TestClearColor.cpp" />
     <ClCompile Include="tests\TestMVP.cpp" />
     <ClCompile Include="tests\TestTexture.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="ErrorCheck.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="tests\Test.h" />
+    <ClInclude Include="tests\TestCamera.h" />
     <ClInclude Include="tests\TestClearColor.h" />
     <ClInclude Include="tests\TestMVP.h" />
     <ClInclude Include="tests\TestTexture.h" />

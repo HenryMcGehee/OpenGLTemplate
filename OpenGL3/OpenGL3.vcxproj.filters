@@ -60,6 +60,9 @@
     <ClCompile Include="tests\TestMVP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\TestCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h">
@@ -954,6 +957,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\TestMVP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\TestCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

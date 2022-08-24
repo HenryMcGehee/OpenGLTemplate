@@ -38,7 +38,7 @@ namespace test {
 	void TestTriangle::OnRender()
 	{
 		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		shader->Bind();
 		shader->SetUniform4f("color", color[0], color[1], color[2], color[3]);
 		GLCall(glBindVertexArray(VAO));

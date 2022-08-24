@@ -73,7 +73,7 @@ namespace test {
 	void TestTexture::OnRender()
 	{
 		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		shader->Bind();
 		shader->SetUniform1i("tex1", 0);
 		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));

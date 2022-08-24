@@ -6,6 +6,7 @@
 
 namespace test {
 	TestMVP::TestMVP()
+		: modelScale(1.0f, 1.0f, 1.0f), fov(45.0f)
 	{
 		float vertices[] = {
 			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -111,35 +112,51 @@ namespace test {
 	{
 		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+		
 		shader->Bind();
-
-		//GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 		
 		GLCall(glDrawArrays(GL_TRIANGLES, 0, 36));
 		GLCall(glBindVertexArray(VAO));
 
-		
+		// Model
+		{
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(modelPosition.x, modelPosition.y, modelPosition.z));
 
-		model = glm::mat4(1.0f);
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+			model = glm::rotate(model, glm::radians(modelRotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(modelRotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(modelRotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 
-		view = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+			model = glm::scale(model, modelScale);
+			
+			unsigned int modelLoc = shader->GetUniformLocation("model");
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		}
 
-		projection = glm::perspective(glm::radians(45.0f), 960.0f / 540.0f, 0.1f, 100.0f);
+		// View
+		{
+			view = glm::mat4(1.0f);
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+			
+			unsigned int viewlLoc = shader->GetUniformLocation("view");
+			glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
+		}
 
-		unsigned int modelLoc = shader->GetUniformLocation("model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-		unsigned int viewlLoc = shader->GetUniformLocation("view");
-		glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
-
-		unsigned int projectionLoc = shader->GetUniformLocation("projection");
-		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
+		// Projection
+		{
+			projection = glm::perspective(glm::radians(fov), 960.0f / 540.0f, 0.1f, 100.0f);
+			unsigned int projectionLoc = shader->GetUniformLocation("projection");
+			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		}
 	}
 	void TestMVP::OnImGuiRender()
 	{
-		
+		ImGui::Text("Transform");
+		ImGui::DragFloat3("Position", (float*)&modelPosition, 0.1f);
+		ImGui::DragFloat3("Rotation", (float*)&modelRotation);
+		ImGui::DragFloat3("Scale", (float*)&modelScale, 0.1f);
+
+		ImGui::Text("Camera FOV");
+		ImGui::DragFloat("FOV", &fov);
 	}
 }

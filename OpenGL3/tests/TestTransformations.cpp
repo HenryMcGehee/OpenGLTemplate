@@ -82,7 +82,7 @@ namespace test {
 	void TestTransformations::OnRender()
 	{
 		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
+		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		shader->Bind();
 
 		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));

@@ -20,7 +20,9 @@ namespace test {
 		unsigned int VBO, VAO, EBO, texture;
 		float xPosition, yPosition, zPosition;
 		float xRotation, yRotation, zRotation;
-		float scale = 1;
+		glm::vec3 modelPosition, modelRotation, modelScale;
+		glm::vec3 cameraPosition, cameraRotation, cameraScale;
+		float fov;
 		glm::mat4 model;
 		glm::mat4 view;
 		glm::mat4 projection;

@@ -6,50 +6,50 @@
 
 namespace test {
 	TestColors::TestColors()
-		: lightPosition(1.0f, 1.0f, 0.0f), modelScale(1.0f, 1.0f, 1.0f), fov(45.0f), cameraPosition(0.0f, 0.0f, -5.0f), cameraRotation(0.0f, 0.0f, 0.0f), lightColor{ 1.0f, 1.0f, 1.0f, 1.0f }, modelColor{1.0f, 0.0f, 0.0f, 1.0f }
+		: lightPosition(-1.3f, 0.6f, 1.6f), modelScale(1.0f, 1.0f, 1.0f), fov(45.0f), cameraPosition(0.0f, 0.0f, -5.0f), cameraRotation(0.0f, 0.0f, 0.0f), lightColor{ 1.0f, 1.0f, 1.0f }, modelColor{1.0f, 0.0f, 0.0f }
 	{
 		float vertices[] = {
-			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-			 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-			-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+			-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+			-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+			-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+			 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+			 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+			 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+			 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+			 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+			 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+			-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+			-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+			-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+			 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+			 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+			-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+			-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 		};
 
 		shader = std::make_unique<Shader>("res/shaders/ColoredLight.shader");
@@ -58,7 +58,7 @@ namespace test {
 		lightShader = std::make_unique<Shader>("res/shaders/Light.shader");
 		//lightShader->Bind();
 
-		// Handle Cube
+		// Handle Cubes
 		{
 			GLCall(glGenVertexArrays(1, &VAO));
 			GLCall(glGenBuffers(1, &VBO));
@@ -67,21 +67,21 @@ namespace test {
 			GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
 			GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
 
-			GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0));
+			GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
 			GLCall(glEnableVertexAttribArray(0));
 
-			GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
-			GLCall(glEnableVertexAttribArray(1));
+			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+			glEnableVertexAttribArray(1);
 
 			GLCall(glGenVertexArrays(1, &lightVAO));
 			GLCall(glBindVertexArray(lightVAO));
 			GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
 			//GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
 
-			GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0));
+			GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
 			GLCall(glEnableVertexAttribArray(0));
-			GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
-			GLCall(glEnableVertexAttribArray(1));
+			//GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
+			//GLCall(glEnableVertexAttribArray(1));
 		}
 
 		// Texture Setup
@@ -126,8 +126,10 @@ namespace test {
 	}
 	void TestColors::OnRender()
 	{
-		GLCall(glClearColor(0.5f, 0.5f, 0.5f, 1.0f));
+		GLCall(glClearColor(0.3f, 0.6f, 0.5f, 1.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+		
 
 		shader->Bind();
 
@@ -141,11 +143,13 @@ namespace test {
 		// View
 		{
 			view = glm::mat4(1.0f);
-			view = glm::translate(view, cameraPosition);
-		
+
 			view = glm::rotate(view, glm::radians(cameraRotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
 			view = glm::rotate(view, glm::radians(cameraRotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
 			view = glm::rotate(view, glm::radians(cameraRotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+
+			view = glm::translate(view, cameraPosition);
+		
 		
 			unsigned int viewlLoc = shader->GetUniformLocation("view");
 			glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
@@ -168,12 +172,24 @@ namespace test {
 		
 		// Lighting
 		{
+			unsigned int lightPosLoc = shader->GetUniformLocation("lightPos");
+			glUniform3fv(lightPosLoc, 1, &lightPosition[0]);
+			
+			unsigned int viewPosLoc = shader->GetUniformLocation("viewPos");
+			glUniform3fv(viewPosLoc, 1, &cameraPosition[0]);
+
+			unsigned int shinnyLoc = shader->GetUniformLocation("shininess");
+			glUniform1f(shinnyLoc, shininess);
+			
+			unsigned int specularLoc = shader->GetUniformLocation("specularStrength");
+			glUniform1f(specularLoc, specular);
+
 			// model
 			unsigned int lightColorLoc = shader->GetUniformLocation("lightColor");
-			glUniform4f(lightColorLoc, lightColor[0], lightColor[1], lightColor[2], lightColor[3]);
+			glUniform3f(lightColorLoc, lightColor[0], lightColor[1], lightColor[2]);
 		
 			unsigned int modelColorLoc = shader->GetUniformLocation("objectColor");
-			glUniform4f(modelColorLoc, modelColor[0], modelColor[1], modelColor[2], modelColor[3]);
+			glUniform3f(modelColorLoc, modelColor[0], modelColor[1], modelColor[2]);
 			
 		}
 		
@@ -199,7 +215,7 @@ namespace test {
 			GLCall(glUniformMatrix4fv(m, 1, GL_FALSE, glm::value_ptr(model)));
 
 			unsigned int l = lightShader->GetUniformLocation("Color");
-			GLCall(glUniform4f(l , lightColor[0], lightColor[1], lightColor[2], lightColor[3]));
+			glUniform3f(l , lightColor[0], lightColor[1], lightColor[2]);
 
 		}
 
@@ -219,12 +235,18 @@ namespace test {
 		ImGui::Text("Camera FOV");
 		ImGui::DragFloat("FOV", &fov);
 
+		ImGui::Text("Specular Size");
+		ImGui::DragFloat("Specular", &specular);
+		
+		ImGui::Text("Shinnyness");
+		ImGui::DragFloat("Shinny", &shininess);
+
 		ImGui::Text("Camera Transform");
 		ImGui::DragFloat3("CamPosition", (float*)&cameraPosition, 0.01f);
 		ImGui::DragFloat3("CamRotation", (float*)&cameraRotation);
 
 		ImGui::Text("Colors");
-		ImGui::ColorEdit4("Light Color", lightColor);
-		ImGui::ColorEdit4("model Color", modelColor);
+		ImGui::ColorEdit3("Light Color", lightColor);
+		ImGui::ColorEdit3("model Color", modelColor);
 	}
 }

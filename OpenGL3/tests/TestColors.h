@@ -25,12 +25,14 @@ namespace test {
 		glm::vec3 lightPosition;
 		glm::vec3 cameraPosition, cameraRotation, cameraTarget, cameraDirection;
 		float fov;
+		float shininess = 32.0f;
+		float specular = 0.5f;
 		glm::mat4 model;
 		glm::mat4 model2;
 		glm::mat4 view;
 		glm::mat4 projection;
-		float lightColor[4];
-		float modelColor[4];
+		float lightColor[3];
+		float modelColor[3];
 		std::unique_ptr<Shader> shader;
 		std::unique_ptr<Shader> lightShader;
 	};

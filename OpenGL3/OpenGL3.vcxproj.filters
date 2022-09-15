@@ -63,6 +63,9 @@
     <ClCompile Include="tests\TestCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\TestColors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h">
@@ -962,6 +965,9 @@
     <ClInclude Include="tests\TestCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tests\TestColors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\detail\func_common.inl">
@@ -1376,6 +1382,8 @@
     <None Include="res\shaders\UnlitTexture.shader" />
     <None Include="res\shaders\Translation.shader" />
     <None Include="res\shaders\ModelViewMatrix.shader" />
+    <None Include="res\shaders\ColoredLight.shader" />
+    <None Include="res\shaders\Light.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\wall.jpg">

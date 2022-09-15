@@ -155,6 +155,7 @@
     <ClCompile Include="tests\Test.cpp" />
     <ClCompile Include="tests\TestCamera.cpp" />
     <ClCompile Include="tests\TestClearColor.cpp" />
+    <ClCompile Include="tests\TestColors.cpp" />
     <ClCompile Include="tests\TestMVP.cpp" />
     <ClCompile Include="tests\TestTexture.cpp" />
     <ClCompile Include="tests\TestTransformations.cpp" />
@@ -169,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="tests\TestColors.h" />
     <ClInclude Include="tests\Test.h" />
     <ClInclude Include="tests\TestCamera.h" />
     <ClInclude Include="tests\TestClearColor.h" />
@@ -468,6 +470,8 @@
     <ClInclude Include="vendor\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\ColoredLight.shader" />
+    <None Include="res\shaders\Light.shader" />
     <None Include="res\shaders\ModelViewMatrix.shader" />
     <None Include="res\shaders\Translation.shader" />
     <None Include="res\shaders\UnlitColor.shader" />

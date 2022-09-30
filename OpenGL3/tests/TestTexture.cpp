@@ -60,6 +60,30 @@ namespace test {
 		    std::cout << "Failed to load texture" << std::endl;
 		}
 		stbi_image_free(data);
+
+		GLCall(glGenTextures(1, &texture2));
+		GLCall(glBindTexture(GL_TEXTURE_2D, texture2)); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+		// set the texture wrapping parameters
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));	// set texture wrapping to GL_REPEAT (default wrapping method)
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+		// set texture filtering parameters
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+		// load image, create texture and generate mipmaps
+		int width2, height2, nrChannels2;
+		stbi_set_flip_vertically_on_load(true);
+		// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+		unsigned char* data2 = stbi_load("res/images/container2.png", &width2, &height2, &nrChannels2, 0);
+		if (data2)
+		{
+			GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width2, height2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2));
+			GLCall(glGenerateMipmap(GL_TEXTURE_2D));
+		}
+		else
+		{
+			std::cout << "Failed to load texture" << std::endl;
+		}
+		stbi_image_free(data2);
 	}
 
 	TestTexture::~TestTexture()
@@ -76,6 +100,11 @@ namespace test {
 		GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		shader->Bind();
 		shader->SetUniform1i("tex1", 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		shader->SetUniform1i("tex2", 1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
 		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 		GLCall(glBindVertexArray(VAO));
 		GLCall(glDrawArrays(GL_TRIANGLES, 0, 3));

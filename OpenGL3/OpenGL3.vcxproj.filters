@@ -66,6 +66,9 @@
     <ClCompile Include="tests\TestColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\TestMaterials.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ErrorCheck.h">
@@ -968,6 +971,9 @@
     <ClInclude Include="tests\TestColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tests\TestMaterials.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\glm\detail\func_common.inl">
@@ -1384,12 +1390,19 @@
     <None Include="res\shaders\ModelViewMatrix.shader" />
     <None Include="res\shaders\ColoredLight.shader" />
     <None Include="res\shaders\Light.shader" />
+    <None Include="res\shaders\Material.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\wall.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\images\wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\container2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\container2_specular.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

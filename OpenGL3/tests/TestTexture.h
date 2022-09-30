@@ -14,7 +14,7 @@ namespace test {
 		void OnRender() override;
 		void OnImGuiRender() override;
 	private:
-		unsigned int VBO, VAO, EBO, texture;
+		unsigned int VBO, VAO, EBO, texture, texture2;
 		std::unique_ptr<Shader> shader;
 	};
 }

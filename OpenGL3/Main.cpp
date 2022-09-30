@@ -11,6 +11,7 @@
 #include "tests/TestMVP.h"
 #include "tests/TestCamera.h"
 #include "tests/TestColors.h"
+#include "tests/TestMaterials.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -68,6 +69,7 @@ int main()
     menu->RegisterTest<test::TestMVP>("Model View Projection Matrix");
     menu->RegisterTest<test::TestCamera>("Camera");
     menu->RegisterTest<test::TestColors>("Colored Light");
+    menu->RegisterTest<test::TestMaterials>("Materials");
 
     while (!glfwWindowShouldClose(window))
     {
